@@ -13,6 +13,7 @@
         "request": "^2.79.0"
     },
     "scripts": {
+        "start": "node --harmony /app/.heroku/node/bin/npm",
         "heroku": "NODE_ENV=production node --harmony app"
     }
 }
