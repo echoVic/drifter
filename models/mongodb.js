@@ -44,7 +44,7 @@ exports.getOne = function(_id, callback) {
 
 // 回复特定id的漂流瓶
 exports.reply = function(_id, reply, callback) {
-    reply.time = reply.time || Date.now();
+  reply.time = reply.time || Date.now().toString();
     // 通过id找到要回复的漂流瓶
     bottleModel.findById(_id, function(err, _bottle) {
         if (err) {
@@ -53,7 +53,7 @@ exports.reply = function(_id, reply, callback) {
         var newBottle = {};
         newBottle.bottle = _bottle.bottle;
         newBottle.message = _bottle.message;
-        // 如果捡瓶子的人第一次回复漂流瓶，则在bottle键添加漂流瓶主人
+    // 如果捡瓶子的人第一次回复漂流瓶，则在 bottle 键添加漂流瓶主人信息
         // 如果已经回复过漂流瓶，则不再添加
         if (newBottle.bottle.length === 1) {
             newBottle.bottle.push(_bottle.message[0][0]);
@@ -66,7 +66,7 @@ exports.reply = function(_id, reply, callback) {
                 return callback({ code: 0, msg: "回复漂流瓶失败..." });
             }
             // 成功时返回更新后的漂流瓶信息
-            callback({ code: 1, msg: botle });
+      callback({code: 1, msg: bottle});
         });
     });
 };
